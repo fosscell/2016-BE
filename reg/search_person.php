@@ -13,43 +13,47 @@
 			<div align="left" class="col-sm-offset-4 col-sm-4">		
 				<form name="register" id="id_user_verification" action="./reg/verify.php" method="post" onsubmit="return validate_confirm();">												
 						<style>
-							.tablerow{
-								width: 150px;
+							.tablecol1{
+								width: 200px;
+								height: 25px;
+							}
+							.tablecol2{
+								width: 200px;
 								height: 25px;
 							}
 						</style>
 						<table>
 							<tr>
-								<td class="tablerow"><strong>ID</strong></td>
-								<td class="tablerow"><span><?php if(isset($_POST['key']))echo $row['ID']; ?></span></td>
+								<td class="tablecol1"><strong>ID</strong></td>
+								<td class="tablecol2"><span><?php if(isset($_POST['key']))echo $row['ID']; ?></span></td>
 							</tr>
 							<tr>
-								<td class="tablerow"><strong>Full Name</strong></td>
-								<td class="tablerow"><span><?php if(isset($_POST['key']))echo $row['BUYER_NAME']; ?>
+								<td class="tablecol1"><strong>Full Name</strong></td>
+								<td class="tablecol2"><span><?php if(isset($_POST['key']))echo $row['BUYER_NAME']; ?>
 									<input type="hidden" id="id_name" name="name" value="<?php if(isset($_POST['key']))echo $row['BUYER_NAME']; ?>">
 								</span></td>
 							</tr>
 							<tr>
-								<td class="tablerow"><strong>Email</strong></td>
-								<td class="tablerow"><span><?php if(isset($_POST['key']))echo $row['E_MAIL']; ?>
+								<td class="tablecol1"><strong>Email</strong></td>
+								<td class="tablecol2"><span><?php if(isset($_POST['key']))echo $row['E_MAIL']; ?>
 									<input type="hidden" id="id_email" name="email" value="<?php if(isset($_POST['key']))echo $row['E_MAIL']; ?>">
 								</span></td>
 							</tr>
 							<tr>
-								<td class="tablerow"><strong>Mobile</strong></td>
-								<td class="tablerow"><span><?php if(isset($_POST['key']))echo $row['PHONE_NUMBER']; ?>
+								<td class="tablecol1"><strong>Mobile</strong></td>
+								<td class="tablecol2"><span><?php if(isset($_POST['key']))echo $row['PHONE_NUMBER']; ?>
 									<input type="hidden" id="id_phone" name="phone" value="<?php if(isset($_POST['key']))echo $row['PHONE_NUMBER']; ?>">
 								</span></td>
 							</tr>
 							<tr>
-								<td class="tablerow"><strong>Amount Paid</strong></td>
-								<td class="tablerow"><span><?php if(isset($_POST['key']))echo $row['AMOUNT_PAID']; ?>
+								<td class="tablecol1"><strong>Amount Paid</strong></td>
+								<td class="tablecol2"><span><?php if(isset($_POST['key']))echo $row['AMOUNT_PAID']; ?>
 									<input type="hidden" id="id_amount" name="amount" value="<?php if(isset($_POST['key']))echo $row['AMOUNT_PAID']; ?>">
 								</span></td>
 							</tr>
 							<tr>
-								<td class="tablerow"><strong>Organisation</strong></td>
-								<td class="tablerow"><span><?php if(isset($_POST['key']))echo $row['ORG_NAME']; ?>
+								<td class="tablecol1"><strong>Organisation</strong></td>
+								<td class="tablecol2"><span><?php if(isset($_POST['key']))echo $row['ORG_NAME']; ?>
 									<input type="hidden" id="id_org" name="org" value="<?php if(isset($_POST['key']))echo $row['ORG_NAME']; ?>">
 								</span></td>
 							</tr>					

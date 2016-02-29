@@ -2,7 +2,7 @@
 
 	require_once("../config.php");
 
-		$users = "SELECT * FROM instamojo_responses";
+		$users = "SELECT * FROM instamojo_responses WHERE STATUS='Completed'";
 		$usr = mysqli_query($mysqli,$users);
 		$a = array();
 		while($row = mysqli_fetch_array($usr)){

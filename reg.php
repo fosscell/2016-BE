@@ -1,5 +1,16 @@
 <?php
 require_once("config.php");
+$valid_passwords = array ($user_id => $no_pass);
+$valid_users = array_keys($valid_passwords);
+$user = $_SERVER['PHP_AUTH_USER'];
+$pass = $_SERVER['PHP_AUTH_PW'];
+$validated = (in_array($user, $valid_users)) && ($pass == $valid_passwords[$user]);
+if (!$validated) {
+  header('WWW-Authenticate: Basic realm="admin cPanel"');
+  header('HTTP/1.0 401 Unauthorized');
+  die ("Not authorized");
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,6 +23,7 @@ require_once("config.php");
 			function showHint(str) 
 				{
 					document.getElementById("person_details").innerHTML = "";
+					document.getElementById("check_api").value = "";
 					
 					if (str.length == 0) { 
 						document.getElementById("txtHint").innerHTML = "";
@@ -43,6 +55,7 @@ require_once("config.php");
 							var retval = xmlhttp.responseText;						
 							document.getElementById("person_details").innerHTML = retval;
 							document.getElementById("txtHint").innerHTML = "";
+							document.getElementById("check_api").value = "";							
 						}
 					}
 					xmlhttp.open("POST", "./reg/search_person.php", true);				
@@ -89,9 +102,20 @@ require_once("config.php");
 		
 	</head>
 	<body>
-		<br>
+		
+		
 		<div class="row">
-			<div class="col-md-10">
+			<div class="col-md-6">
+					<h3>Verify Online Payment with  MOJO ID(20 characters)</h3>
+					<form method="POST" target="_blank" action="http://admin.fossmeet.in/ban_pay.php">
+						<input type="text" name="q" id="check_api">
+						<input type="Submit" value="SHOW">
+					</form>
+			</div>			
+		</div>
+		<br><br>
+		<div class="row">
+			<div class="col-md-6">
 				<div class="input-group">
 					<form action="./reg/new_reg.php" method="get">			
 						<input type="submit" value="New Registration"><b style="color: blue">&nbsp;&nbsp;&nbsp;(Registration allowed only once for each person)</b>
@@ -102,10 +126,11 @@ require_once("config.php");
 		
 		<div>
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-4">
 					<h3>Verify Users</h3>								
 				</div>
-				<div class="col-sm-6">
+				
+				<div class="col-sm-4">
 					<h3>Show all verified users</h3>
 					<form method="POST" target="_blank" action="./reg/show_final.php" name="listusers" id="listusers">			
 						<input type="Submit" value="SHOW">
